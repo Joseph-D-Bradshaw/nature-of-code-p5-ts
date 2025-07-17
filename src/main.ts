@@ -1,12 +1,20 @@
+import './style.css'
+
 import p5 from "p5";
 import exampleSketch from "./exampleSketch.ts";
 import randomWalker from "./sketches/walker.ts";
+import biasedWalker from "./sketches/walker-extra.ts";
+import mouseBiasedWalker from "./sketches/walker-extra-2.ts";
 import randomDistribution from "./sketches/randomDistribution.ts";
+import gaussianDistribution from "./sketches/gaussianDistribution.ts";
 
 const sketchMap = {
   exampleSketch,
   randomWalker,
   randomDistribution,
+  biasedWalker,
+  mouseBiasedWalker,
+  gaussianDistribution
 };
 
 let currentSketch: p5 | null = null;
