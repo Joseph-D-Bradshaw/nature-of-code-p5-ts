@@ -16,16 +16,23 @@ function loadSketch(sketchFn: (p: p5) => void, container: HTMLElement) {
   currentSketch = new p5(sketchFn, container);
 }
 
-document.querySelector("#app")!.innerHTML = `
-  <button id="exampleSketch">Example Sketch</button>
-  <button id="randomWalker">Random Walker</button>
-  <div id="p5-container"></div>
-`;
+function createSketchButton(id: string): string {
+  return `<button id="${id}">${id}</button>`;
+}
 
-let container = document.getElementById("p5-container");
+function start() {
+  document.querySelector("#app")!.innerHTML = `
+    ${Object.keys(sketchMap).map(createSketchButton).join("")}
+    <div id="p5-container"></div>
+  `;
 
-Object.entries(sketchMap).forEach(([key, fn]) => {
-  document
-    .getElementById(key)
-    ?.addEventListener("click", () => loadSketch(fn, container!));
-});
+  let container = document.getElementById("p5-container");
+
+  Object.entries(sketchMap).forEach(([key, fn]) => {
+    document
+      .getElementById(key)
+      ?.addEventListener("click", () => loadSketch(fn, container!));
+  });
+}
+
+start();
