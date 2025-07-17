@@ -12,8 +12,19 @@ class Walker {
   }
 
   show() {
-    this.p.stroke(0);
-    this.p.point(this.x, this.y);
+    const p = this.p;
+
+    p.stroke(0);
+    p.point(this.x, this.y);
+  }
+
+  step() {
+    const p = this.p;
+
+    let xstep = p.random(-1, 1);
+    let ystep = p.random(-1, 1);
+    this.x += xstep;
+    this.y += ystep;
   }
 }
 
@@ -26,7 +37,7 @@ const sketch = (p: p5) => {
   };
 
   p.draw = () => {
-    p.background(220);
+    walker.step();
     walker.show();
   };
 };

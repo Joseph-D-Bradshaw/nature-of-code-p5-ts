@@ -1,10 +1,12 @@
 import p5 from "p5";
 import exampleSketch from "./exampleSketch.ts";
 import randomWalker from "./sketches/walker.ts";
+import randomDistribution from "./sketches/randomDistribution.ts";
 
 const sketchMap = {
-  exampleSketch: exampleSketch,
-  randomWalker: randomWalker,
+  exampleSketch,
+  randomWalker,
+  randomDistribution,
 };
 
 let currentSketch: p5 | null = null;
@@ -13,6 +15,7 @@ function loadSketch(sketchFn: (p: p5) => void, container: HTMLElement) {
   if (currentSketch) {
     currentSketch.remove();
   }
+  console.log("Loading sketch", sketchFn.name);
   currentSketch = new p5(sketchFn, container);
 }
 
@@ -29,6 +32,7 @@ function start() {
   let container = document.getElementById("p5-container");
 
   Object.entries(sketchMap).forEach(([key, fn]) => {
+    console.log("Setting button for", key);
     document
       .getElementById(key)
       ?.addEventListener("click", () => loadSketch(fn, container!));
