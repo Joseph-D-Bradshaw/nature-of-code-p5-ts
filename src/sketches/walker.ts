@@ -3,24 +3,18 @@ import p5 from "p5";
 class Walker {
   x: number;
   y: number;
-  p: p5;
 
   constructor(p: p5) {
-    this.p = p;
     this.x = p.width / 2;
     this.y = p.height / 2;
   }
 
-  show() {
-    const p = this.p;
-
+  show(p: p5) {
     p.stroke(0);
     p.point(this.x, this.y);
   }
 
-  step() {
-    const p = this.p;
-
+  step(p: p5) {
     let xstep = p.random(-1, 1);
     let ystep = p.random(-1, 1);
     this.x += xstep;
@@ -37,8 +31,8 @@ const sketch = (p: p5) => {
   };
 
   p.draw = () => {
-    walker.step();
-    walker.show();
+    walker.step(p);
+    walker.show(p);
   };
 };
 
