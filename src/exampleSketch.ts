@@ -11,8 +11,4 @@ const sketch = (p: p5) => {
   };
 };
 
-function startSketch() {
-  new p5(sketch);
-}
-
-export default startSketch;
+export default sketch;
